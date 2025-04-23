@@ -82,7 +82,7 @@
     async function listIssues() {
       const container = document.getElementById('dir-list');
       try {
-        const res = await fetch('/issues.json');
+        const res = await fetch('/cleanshirt.online/issues.json');
         const issues = await res.json();
 
         if (!issues.length) {
