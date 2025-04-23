@@ -94,7 +94,7 @@
         issues.forEach(issue => {
           const a = document.createElement('a');
           a.href = `/read/${issue.filename}`;
-          a.textContent = `${cleanshirt.online/issue.title}/`;
+          a.textContent = `cleanshirt.online/${issue.title}/`;
           container.appendChild(a);
         });
       } catch (err) {
