@@ -1,0 +1,41 @@
+<!-- assets/css/style.css -->
+body {
+  background-color: #f8f8f8;
+  color: #111;
+  font-family: "Courier New", monospace;
+  margin: 0;
+  padding: 1em;
+}
+
+.page-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+
+h1 {
+  font-size: 1.5em;
+  border-bottom: 1px dashed #aaa;
+  padding-bottom: 0.25em;
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+}
+
+.file-list li {
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: #003399;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

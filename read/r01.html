@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cleanshirt_chronicles.r01</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+      color: #fff;
+      font-family: monospace;
+    }
+    #viewer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      width: 100vw;
+
+
+    }
+    .title-banner {
+      max-width: 90vw;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      padding-top: 0.1rem;
+      position: relative;
+    }
+    .image-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.1rem;
+      overflow: hidden;
+    }
+    .image-wrapper {
+      background: #fff;
+      padding: 1rem;
+      box-sizing: border-box;
+      max-height: 95vh;
+      max-width: 95vw;
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+    .preview-image {
+      opacity: 0.3;
+      max-height: 60vh;
+      max-width: 30vw;
+      background: #fff;
+      box-sizing: border-box;
+    }
+    img.page-image, .preview-image {
+      object-fit: contain;
+      display: block;
+      width: 100%;
+      height: 80%;
+    }
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+    #prev {
+      left: 0;
+    }
+    #next {
+      right: 0;
+    }
+    #page-counter {
+      position: absolute;
+      bottom: 0.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+      padding: 0.4rem;
+            background: rgba(0, 0, 0, 0.5);
+                  z-index: 4;
+    }
+    #page-title {
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.2rem 0rem;
+      margin-top: 2%;
+      text-align: left;
+    }
+    #download-button {
+      left: 50%;
+      font-size: 1.3rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      margin-top: 12px;
+      z-index: 3;
+    }
+    #download-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <a href="https://cleanshirt.online">
+  <img class="title-banner" src="assets/img/title_banner.png" alt="Cleanshirt Chronicles Title Banner">
+  </a>
+
+  <div id="viewer">
+    <button id="prev" class="nav-button">⟨</button>
+<button id="download-button" onclick="window.location.href='r01/downloads.html'">
+  download cleanshirt_chronicles.r01
+</button>
+
+    <div id="page-title">Cover</div>
+    <div class="image-strip">
+      <img id="prev-image" class="preview-image" style="display:none;" />
+      <div class="image-wrapper">
+        <img id="page" class="page-image" src="r01/r01_cover.png" alt="Cover" />
+      </div>
+      <img id="next-image" class="preview-image" style="display:none;" />
+    </div>
+    <button id="next" class="nav-button">⟩</button>
+    <div id="page-counter">1 / 12</div>
+          
+  </div>
+  
+
+
+
+  <script>
+    const pages = [
+      { src: 'r01/r01_cover.png', alt: 'r01_front_cover.jpg' },
+      { src: 'r01/r01_readme.png', alt: 'r01_readme.nfo' },
+      { src: 'r01/r01_sleeve_notes_1.png', alt: 'r01_sleeve_notes.txt' },
+      { src: 'r01/r01_sleeve_notes_2.png', alt: 'r01_sleeve_notes.txt' },
+      { src: 'r01/r01_memory_card_1.png', alt: 'r01_memory_card.raw' },
+      { src: 'r01/r01_memory_card_2.png', alt: 'r01_memory_card.raw' },
+      { src: 'r01/r01_backlogged_loaded.png', alt: 'r01_backlogged_and_loaded.db' },
+      { src: 'r01/r01_frame_dump.png', alt: 'r01_frame_dump.jpg' },
+      { src: 'r01/r01_journal_entry.png', alt: 'r01_journal_entry.log' },
+      { src: 'r01/r01_dog_log.png', alt: 'r01_dog_log.txt' },
+      { src: 'r01/r01_about_me.png', alt: 'r01_about_me.doc' },
+    ];
+
+    let current = 0;
+    const img = document.getElementById('page');
+    const title = document.getElementById('page-title');
+    const counter = document.getElementById('page-counter');
+    const prevImg = document.getElementById('prev-image');
+    const nextImg = document.getElementById('next-image');
+
+function updateViewer(index) {
+  img.src = pages[index].src;
+  img.alt = pages[index].alt;
+  title.textContent = pages[index].alt;
+  counter.textContent = `${index + 1} / ${pages.length}`;
+
+  prevImg.style.display = 'block';
+  prevImg.src = pages[(index - 1 + pages.length) % pages.length].src;
+
+  nextImg.style.display = 'block';
+  nextImg.src = pages[(index + 1) % pages.length].src;
+}
+
+updateViewer(current);
+
+document.getElementById('prev').addEventListener('click', () => {
+  current = (current - 1 + pages.length) % pages.length;
+  updateViewer(current);
+});
+
+document.getElementById('next').addEventListener('click', () => {
+  current = (current + 1) % pages.length;
+  updateViewer(current);
+});
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', (e) => {
+  const deltaX = e.changedTouches[0].screenX - touchStartX;
+  if (deltaX > 50) {
+    current = (current - 1 + pages.length) % pages.length;
+    updateViewer(current);
+  } else if (deltaX < -50) {
+    current = (current + 1) % pages.length;
+    updateViewer(current);
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') {
+    current = (current - 1 + pages.length) % pages.length;
+    updateViewer(current);
+  } else if (e.key === 'ArrowRight') {
+    current = (current + 1) % pages.length;
+    updateViewer(current);
+  }
+});
+
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>cleanshirt.online</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner {
+      width: 100%;
+      max-width: 498px;
+      margin-top: 1rem;
+    }
+
+    .directory {
+      margin: 2rem 0;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+
+    .directory a {
+      color: #0ff;
+      text-decoration: none;
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .directory a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: #0ff;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .email {
+      display: block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="https://cleanshirt.online">
+  <img class="banner" src="assets/img/title_banner.png" alt="Cleanshirt Banner"/>
+  </a>
+
+  <div class="directory" id="dir-list">
+    <em>loading issues...</em>
+  </div>
+
+  <div class="footer">
+    <a href="https://www.instagram.com/cleanshirtuk/" target="_blank">instagram.com/cleanshirtuk</a> |
+    <a href="https://www.instagram.com/josh.smith.jpg/" target="_blank">instagram.com/josh.smith.jpg</a> |
+    <a href="https://soundcloud.com/cleanshirtuk" target="_blank">soundcloud.com/cleanshirtuk</a>
+    <span class="email">email: <a href="mailto:cleanshirtmusic@gmail.com">cleanshirtmusic@gmail.com</a></span>
+  </div>
+
+  <script>
+    async function listIssues() {
+      const container = document.getElementById('dir-list');
+      try {
+        const res = await fetch('/issues.json');
+        const issues = await res.json();
+
+        if (!issues.length) {
+          container.innerHTML = '<em>no issues found</em>';
+          return;
+        }
+
+        container.innerHTML = '';
+        issues.forEach(issue => {
+          const a = document.createElement('a');
+          a.href = `/read/${issue.filename}`;
+          a.textContent = `${issue.title}/`;
+          container.appendChild(a);
+        });
+      } catch (err) {
+        container.innerHTML = '<em>error loading issues</em>';
+        console.error(err);
+      }
+    }
+
+    listIssues();
+  </script>
+</body>
+</html>
+
