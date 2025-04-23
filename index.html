@@ -93,8 +93,8 @@
         container.innerHTML = '';
         issues.forEach(issue => {
           const a = document.createElement('a');
-          a.href = `/read/${issue.filename}`;
-          a.textContent = `cleanshirt.online/${issue.title}/`;
+          a.href = `cleanshirt.online//read/${issue.filename}`;
+          a.textContent = `${issue.title}/`;
           container.appendChild(a);
         });
       } catch (err) {
