@@ -93,7 +93,7 @@
         container.innerHTML = '';
         issues.forEach(issue => {
           const a = document.createElement('a');
-          a.href = `cleanshirt.online//read/${issue.filename}`;
+          a.href = `/read/${issue.filename}`;
           a.textContent = `${issue.title}/`;
           container.appendChild(a);
         });
