@@ -16,6 +16,15 @@ body {
   border: 1px solid #ddd;
 }
 
+.featured {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+}
+
 h1 {
   font-size: 1.5em;
   border-bottom: 1px dashed #aaa;
