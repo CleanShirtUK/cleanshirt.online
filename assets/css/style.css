@@ -17,18 +17,20 @@ body {
 }
 
 .featured {
-  max-width: 800px;
-  margin: auto;
-  padding: 1em;
-  background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  border: 1px solid #ddd;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.featured a {
+  display: block;
+  max-width: 500px;   /* ← hard cap */
 }
 
 .albumart {
   width: 100%;
-  max-width: 500px; /* optional if you want to cap it */
   height: auto;
+  display: block;
 }
 
 
