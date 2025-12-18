@@ -25,6 +25,13 @@ body {
   border: 1px solid #ddd;
 }
 
+.albumart {
+  width: 100%;
+  max-width: 500px; /* optional if you want to cap it */
+  height: auto;
+}
+
+
 h1 {
   font-size: 1.5em;
   border-bottom: 1px dashed #aaa;
