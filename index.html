@@ -68,8 +68,8 @@
   <img class="banner" src="assets/img/title_banner.png" alt="Cleanshirt Banner"/>
   </a>
 
-  <div class="directory" id="dir-list">
-    <em>loading issues...</em>
+  <div class="featured" id="featuredPage">
+    <a href="https://soundcloud.com/cleanshirtuk/clean-shirt-nokia-ringtone-v2"><img class="albumart" src="assets/img/nokiariddim.png" alt="Nokia Riddim"/></a>
   </div>
 
   <div class="footer">
@@ -78,34 +78,6 @@
     <a href="https://soundcloud.com/cleanshirtuk" target="_blank">soundcloud.com/cleanshirtuk</a>
     <span class="email">email: <a href="mailto:cleanshirtmusic@gmail.com">cleanshirtmusic@gmail.com</a></span>
   </div>
-
-  <script>
-    async function listIssues() {
-      const container = document.getElementById('dir-list');
-      try {
-        const res = await fetch('https://cleanshirt.online/issues.json');
-        const issues = await res.json();
-
-        if (!issues.length) {
-          container.innerHTML = '<em>no issues found</em>';
-          return;
-        }
-
-        container.innerHTML = '';
-        issues.forEach(issue => {
-          const a = document.createElement('a');
-          a.href = `/read/${issue.filename}`;
-          a.textContent = `${issue.title}/`;
-          container.appendChild(a);
-        });
-      } catch (err) {
-        container.innerHTML = '<em>error loading issues</em>';
-        console.error(err);
-      }
-    }
-
-    listIssues();
-  </script>
 </body>
 </html>
 
